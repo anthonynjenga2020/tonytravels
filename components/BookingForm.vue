@@ -38,7 +38,7 @@
   <script setup>
 import { ref } from 'vue'
 import { collection, addDoc } from 'firebase/firestore'
-import  db  from '~/plugins/firebase'
+import { db } from '~/plugins/firebase'
 
 const form = ref({
   name: '',
