@@ -1,23 +1,25 @@
 <template>
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-      <img :src="tour.image" :alt="tour.title" class="w-full h-56 object-cover">
-      <div class="p-4">
-        <h3 class="text-xl font-bold">{{ tour.title }}</h3>
-        <p class="text-gray-600">Starting from ${{ tour.price }}</p>
-        <NuxtLink :to="`/tours/${tour.id}`" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-          View Details
-        </NuxtLink>
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <NuxtLink :to="`/tours/${tour.id}`">
+    <img :src="tour.image" :alt="tour.title" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+    </NuxtLink>
+    <div class="p-4"> <NuxtLink :to="`/tours/${tour.id}`">
+      <h2 class="text-xl font-bold hover:blue">{{ tour.title }}</h2></NuxtLink>
+      <p class="text-gray-600">{{ tour.location }}</p>
+      <p class="text-gray-700 mt-2">{{ tour.description }}</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-lg font-bold">${{ tour.price }}</span>
+        <span class="text-sm text-yellow-500">{{ tour.rating }} ⭐</span>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { defineProps } from 'vue';
-  
-  defineProps({
-    tour: {
-      type: Object,
-      required: true
-    }
-  });
-  </script>
+  </div>
+</template>
+
+<script setup>
+defineProps({
+  tour: {
+    type: Object,
+    required: true
+  }
+})
+</script>

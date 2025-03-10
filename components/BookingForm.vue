@@ -50,6 +50,7 @@ const form = ref({
 
 const submitBooking = async () => {
   try {
+    console.log('Submitting booking:', form.value)
     await addDoc(collection(db, 'bookings'), form.value)
     alert('Booking Confirmed!')
     

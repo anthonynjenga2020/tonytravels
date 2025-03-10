@@ -1,42 +1,64 @@
 <template>
-    <section class="container mx-auto py-12 px-4">
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <img :src="tour.image" :alt="tour.title" class="w-full h-96 object-cover">
+    <div class="container mx-auto px-4 py-8">
+      <div v-if="tour" class="max-w-4xl mx-auto">
+        <!-- Tour Image -->
+        <nuxt-img :src="tour.image" alt="Tour image" class="w-full h-64 object-cover rounded-lg mb-6" />
+  
+        <!-- Tour Title -->
+        <h1 class="text-4xl font-bold mb-4">{{ tour.title }}</h1>
         
-        <div class="p-6">
-          <h1 class="text-3xl font-bold">{{ tour.title }}</h1>
-          <p class="text-gray-600 mt-2">Starting from ${{ tour.price }}</p>
-          <p class="mt-4 text-gray-700">{{ tour.description }}</p>
-          
-
-        <!-- Booking Form Component -->
-        <BookingForm />
-          <!-- <div class="mt-6 flex items-center space-x-4">
-            <button class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">
-              Book Now
-            </button>
-            <NuxtLink to="/tours" class="text-blue-500 hover:underline">Back to Tours</NuxtLink>
-          </div> -->
+        <!-- Tour Details -->
+        <div class="flex items-center space-x-4 text-gray-500 text-sm mb-6">
+          <span>{{ tour.location }}</span>
+          <span>·</span>
+          <span>{{ formatDate(tour.date) }}</span>
+          <span>·</span>
+          <span>${{ tour.price }}</span>
         </div>
+  
+        <!-- Tour Description -->
+        <div class="prose max-w-none mb-6" v-html="tour.description"></div>
+  
+        <!-- Booking Form -->
+        <BookingForm :tour-id="route.params.id" />
       </div>
-    </section>
+  
+      <div v-else>
+        <p>Loading tour details...</p>
+      </div>
+    </div>
   </template>
   
   <script setup>
-  import { ref, onMounted } from 'vue';
-  import { useRoute } from 'vue-router';
+  import { ref, onMounted } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { doc, getDoc } from 'firebase/firestore'
+  import  db  from '~/plugins/firebase'
+  import BookingForm from '~/components/BookingForm.vue'
   
-  const route = useRoute();
-  const tour = ref({});
+  const route = useRoute()
+  const tour = ref(null)
   
-  onMounted(() => {
-    const tourData = [
-      { id: 1, title: 'Safari Adventure', image: '/img/4.jpg', price: 500, description: 'Experience the wild like never before.' },
-      { id: 2, title: 'Mountain Trekking', image: '/img/5.jpg', price: 750, description: 'Climb the tallest peaks and enjoy breathtaking views.' },
-      { id: 3, title: 'Beach Escape', image: '/img/6.jpg', price: 600, description: 'Relax on sandy beaches and soak in the sun.' }
-    ];
-    
-    tour.value = tourData.find(t => t.id == route.params.id);
-  });
+  const fetchTour = async () => {
+    try {
+      const docRef = doc(db, 'tours', route.params.id)
+      const docSnap = await getDoc(docRef)
+      if (docSnap.exists()) {
+        tour.value = docSnap.data()
+      } else {
+        console.error('Tour not found')
+      }
+    } catch (error) {
+      console.error('Error fetching tour:', error)
+    }
+  }
+  
+  const formatDate = (timestamp) => {
+    if (!timestamp) return ''
+    const date = timestamp.toDate()
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  }
+  
+  onMounted(fetchTour)
   </script>
   
