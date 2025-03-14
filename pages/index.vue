@@ -23,6 +23,7 @@
   <script setup>
   import TourCard from '@/components/TourCard.vue';
   
+  
   // Dummy data for featured tours (replace with Firebase data later)
   const tours = [
     { id: 1, title: 'Safari Adventure', image: '/img/3.jpg', price: 500 },

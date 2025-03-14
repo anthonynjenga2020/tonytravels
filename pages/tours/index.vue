@@ -14,7 +14,7 @@
   <script setup>
   import { ref, onMounted } from 'vue'
   import { collection, getDocs } from 'firebase/firestore'
-  import { db }from '~/plugins/firebase'
+  import  db  from '~/plugins/firebase'
   import TourCard from '~/components/TourCard.vue'
   
   const tours = ref([])

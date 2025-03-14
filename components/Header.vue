@@ -12,10 +12,13 @@
           <li><NuxtLink to="/about" class="hover:text-blue-500">About</NuxtLink></li>
           <li><NuxtLink to="/blogs" class="hover:text-blue-500">Blogs</NuxtLink></li>
           <li><NuxtLink to="/contact" class="hover:text-blue-500">Contact</NuxtLink></li>
-          
+
           <!-- CURRENCY CONVERTER -->
           <li>
-            <div class="flex items-center space-x-2 border px-3 py-1 rounded-lg cursor-pointer" @click="toggleCurrency">
+            <div 
+              class="flex items-center space-x-2 border px-3 py-1 rounded-lg cursor-pointer" 
+              @click="toggleCurrency"
+            >
               <span class="text-gray-600">{{ currency }}</span>
               <Icon name="uil:exchange-alt" class="text-lg text-gray-500" />
             </div>
@@ -44,16 +47,18 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useCurrencyStore } from '@/stores/currency'
 import LoginSignupModal from './LoginSignupModal.vue'
 
-// CURRENCY STATE
-const currency = ref('USD')
+// Pinia store for currency
+const currencyStore = useCurrencyStore()
+const currency = computed(() => currencyStore.currency)
 
 const toggleCurrency = () => {
-  currency.value = currency.value === 'USD' ? 'KSH' : 'USD'
+  currencyStore.toggleCurrency()
 }
 
-// MODAL STATE
+// Modal state
 const showModal = ref(false)
 
 const handleAuth = (formData) => {

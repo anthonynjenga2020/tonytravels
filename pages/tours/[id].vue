@@ -33,7 +33,7 @@
   import { ref, onMounted } from 'vue'
   import { useRoute } from 'vue-router'
   import { doc, getDoc } from 'firebase/firestore'
-  import { db } from '~/plugins/firebase'
+  import  db   from '~/plugins/firebase'
   import BookingForm from '~/components/BookingForm.vue'
   
   const route = useRoute()
@@ -54,7 +54,7 @@
   }
   
   const formatDate = (timestamp) => {
-    if (!timestamp) return ''
+    if (!timestamp || !timestamp.toDate) return ''
     const date = timestamp.toDate()
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
   }

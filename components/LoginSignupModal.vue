@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <Teleport to="body">
       <div v-if="isOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white p-6 rounded-lg w-full max-w-md">
@@ -74,4 +74,17 @@
     }
   }
   </script>
-  
+   -->
+<template>
+  <div>
+
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style lang="scss" scoped>
+
+</style>
