@@ -1,8 +1,8 @@
 <template>
     <div>
       <!-- Hero Section -->
-      <section class="relative w-full h-[400px]">
-        <nuxt-img src="/img/9.jpg" alt="About Hero" class="w-full h-full object-cover" />
+      <section class="relative w-50% h-[400px]">
+        <nuxt-img src="/img/13.jpg" alt="About Hero" class="w-1/2 h-full object-cover" />
         <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <h1 class="text-white text-5xl font-bold">About Us</h1>
         </div>
@@ -21,7 +21,7 @@
             </p>
           </div>
           <div>
-            <nuxt-img src="/img/10.jpg" alt="Our Team" class="w-full h-96 object-cover rounded-lg shadow-lg" />
+            <nuxt-img src="/img/10.jpg" alt="Our Team" class="w-full h-96 object-contain rounded-lg shadow-lg" />
           </div>
         </div>
       </section>
