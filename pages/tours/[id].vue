@@ -33,7 +33,7 @@
   import { ref, onMounted } from 'vue'
   import { useRoute } from 'vue-router'
   import { doc, getDoc } from 'firebase/firestore'
-  import  db   from '~/plugins/firebase'
+  import  db  from '~/plugins/firebase'
   import BookingForm from '~/components/BookingForm.vue'
   
   const route = useRoute()

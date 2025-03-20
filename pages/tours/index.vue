@@ -2,7 +2,7 @@
     <div class="container mx-auto py-12">
       <h1 class="text-4xl font-bold mb-6">Explore Our Tours</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <TourCard 
+        <TourCard2 
           v-for="tour in tours" 
           :key="tour.id" 
           :tour="tour" 
@@ -15,7 +15,7 @@
   import { ref, onMounted } from 'vue'
   import { collection, getDocs } from 'firebase/firestore'
   import  db  from '~/plugins/firebase'
-  import TourCard from '~/components/TourCard.vue'
+  import TourCard2 from '~/components/TourCard2.vue'
   
   const tours = ref([])
   
