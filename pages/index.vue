@@ -4,6 +4,7 @@
       <div>
     <WhyChooseUs />
   </div>
+ 
   
       <!-- Featured Tours Section -->
       <section class="py-12 container mx-auto">
@@ -17,12 +18,7 @@
       </section>
   
       <!-- Testimonials Section -->
-      <section class="py-12 bg-gray-100">
-        <div class="container mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-8">What Our Customers Say</h2>
-          <p>⭐⭐⭐⭐⭐ "Best travel experience ever!"</p>
-        </div>
-      </section>
+      <!-- <div><TestimonialSection /></div> -->
       <!-- Card Section -->
       <div class="flex space-x-4">
     <ParallaxCard data-image="/img/3.jpg">
